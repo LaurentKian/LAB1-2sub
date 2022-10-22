@@ -125,7 +125,6 @@ public class lab1_2final {
 
         processElse(stack);
 
-
     }
 
     //process the if-else and if-elseif-else，处理if else-if else和 if else问题
@@ -161,5 +160,7 @@ public class lab1_2final {
         System.out.println("if-else num: " + ifElseNum);
         System.out.println("if-else num: " + ifElseIfNum);
     }
+
+
 
 }
