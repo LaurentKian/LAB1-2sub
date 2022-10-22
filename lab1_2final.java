@@ -7,6 +7,8 @@ import java.util.regex.Pattern;
  * @author LiZheng. 832002125
  * @date 2022/10/22
  */
+
+//使用正则表达的方式可以极大地简化代码，并且增加了广泛的适应性
 public class lab1_2final {
     public static void main(String[] args) {
         int totalNum = 0;
@@ -14,13 +16,13 @@ public class lab1_2final {
         int caseNum = 0;
         Stack<String> stack = new Stack<>();
         StringBuilder stringBuilder = new StringBuilder();
-        //The file path
+        //The file path文件路径
         String fileName = "C:\\Users\\10375\\OneDrive - Maynooth University\\大三上\\软件工程\\实验\\实验代码\\lab1-2\\sample.c";
-        //completion level is 4
+        //completion level is 4，完成全部任务
         File file = new File(fileName);
         FileReader fr = null;
 
-        //we use Regular expression to find the target world
+        //we use Regular expression to find the target world正则表达
         String intP = ".*int.*";
         String doubleP = ".*double.*";
         String longP = ".*long.*";
@@ -47,7 +49,7 @@ public class lab1_2final {
         Pattern elseIfR = Pattern.compile(elseIfP);
 
 
-        //find the context of the file
+        //find the context of the file，一行行的读文章代码
         try {
             fr = new FileReader(file);
         } catch (FileNotFoundException e) {
@@ -64,7 +66,7 @@ public class lab1_2final {
                 throw new RuntimeException(e);
             }
 
-            //make the match for each line
+            //make the match for each line，match正则表达
             Matcher intRM = intR.matcher(line);
             Matcher doubleRM = doubleR.matcher(line);
             Matcher longRM = longR.matcher(line);
@@ -105,11 +107,13 @@ public class lab1_2final {
             } else if (elseRM.find()) {
                 stack.push("else");
                 totalNum++;
+
             } else if (returnRM.find() || breakRM.find() || defaultRM.find()) {
                 totalNum++;
             }
         }
 
+//      用来计算两个switch下面的case数量
         if (caseNum != 0) {
             stringBuilder.append(caseNum);
             stringBuilder.append(" ");
@@ -124,7 +128,7 @@ public class lab1_2final {
 
     }
 
-    //process the if-else and if-elseif-else
+    //process the if-else and if-elseif-else，处理if else-if else和 if else问题
     public static void processElse(Stack<String> stack) {
         int ifElseNum = 0;
         int ifElseIfNum = 0;
